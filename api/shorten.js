@@ -52,7 +52,7 @@ export default async function handler(req, res) {
   // Increment total links counter
   await kv.incr('stats:total_links');
 
-  // ----- NEW: Associate slug with the logged‑in user (if any) -----
+  // ----- Associate slug with the logged‑in user (if any) -----
   const cookies = parse(req.headers.cookie || '');
   const token = cookies.sid;
   if (token) {
