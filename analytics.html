@@ -1,1035 +1,809 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="theme-color" content="#c026d3">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>Sarthak URL – Analytics</title>
-    <link rel="canonical" href="https://sarthakurl.vercel.app/analytics" />
-    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>Sarthak URL – Analytics</title>
+  <link rel="canonical" href="https://sarthakurll.vercel.app/analytics" />
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
-    <style>
-        /* ===== RESET & VARIABLES ===== */
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        :root {
-            --purple-50: #faf5ff;
-            --purple-100: #f3e8ff;
-            --purple-200: #e9d5ff;
-            --purple-300: #d8b4fe;
-            --purple-400: #c084fc;
-            --purple-500: #a855f7;
-            --purple-600: #9333ea;
-            --purple-700: #7c3aed;
-            --purple-800: #6d28d9;
-            --white: #ffffff;
-            --gray-100: #f5f5f5;
-            --gray-200: #e5e5e5;
-            --gray-300: #d4d4d4;
-            --gray-600: #52525b;
-            --gray-700: #3f3f46;
-            --gray-800: #27272a;
-            --gray-900: #18181b;
-            --shadow-sm: 0 2px 8px rgba(107, 70, 193, 0.06);
-            --shadow-md: 0 8px 30px rgba(107, 70, 193, 0.10);
-            --shadow-lg: 0 20px 50px rgba(107, 70, 193, 0.14);
-            --radius-sm: 12px;
-            --radius-md: 20px;
-            --radius-lg: 28px;
-            --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        html {
-            scroll-behavior: smooth;
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--white);
-            color: var(--gray-900);
-            padding: 1.2rem;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.78);
-            backdrop-filter: blur(20px) saturate(1.2);
-            -webkit-backdrop-filter: blur(20px) saturate(1.2);
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(192, 132, 252, 0.18);
-            box-shadow: var(--shadow-md);
-            transition: all var(--transition);
-            padding: 1.8rem;
-        }
-        .glass:hover {
-            border-color: rgba(192, 132, 252, 0.4);
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-3px);
-        }
-        .glass .glass-inner {
-            max-width: 100%;
-            overflow: hidden;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --purple-50: #faf5ff;
+      --purple-100: #f3e8ff;
+      --purple-200: #e9d5ff;
+      --purple-300: #d8b4fe;
+      --purple-400: #c084fc;
+      --purple-500: #a855f7;
+      --purple-600: #9333ea;
+      --purple-700: #7c3aed;
+      --purple-800: #6d28d9;
+      --white: #ffffff;
+      --gray-100: #f5f5f5;
+      --gray-200: #e5e5e5;
+      --gray-300: #d4d4d4;
+      --gray-600: #52525b;
+      --gray-700: #3f3f46;
+      --gray-800: #27272a;
+      --gray-900: #18181b;
+      --shadow-sm: 0 2px 8px rgba(107,70,193,0.06);
+      --shadow-md: 0 8px 30px rgba(107,70,193,0.10);
+      --shadow-lg: 0 20px 50px rgba(107,70,193,0.14);
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --transition: 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      padding: 1.2rem;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .glass {
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(20px) saturate(1.2);
+      -webkit-backdrop-filter: blur(20px) saturate(1.2);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(192,132,252,0.18);
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition);
+      padding: 1.8rem;
+    }
+    .glass:hover {
+      border-color: rgba(192,132,252,0.4);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+    .glass .glass-inner { max-width:100%; overflow:hidden; }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 0.6rem 1.4rem;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(24px) saturate(1.3);
+      -webkit-backdrop-filter: blur(24px) saturate(1.3);
+      border-radius: 100px;
+      border: 1px solid rgba(192,132,252,0.18);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+      transition: all var(--transition);
+    }
+    .navbar:hover {
+      border-color: rgba(192,132,252,0.3);
+      box-shadow: var(--shadow-md);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-style: italic;
+      background: linear-gradient(135deg, var(--purple-800), var(--purple-500), var(--purple-400));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .logo i {
+      font-size: 1.2rem;
+      background: linear-gradient(135deg, var(--purple-500), var(--purple-700));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--gray-700);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+      padding: 0.45rem 1rem;
+      border-radius: 100px;
+      transition: all var(--transition);
+    }
+    .nav-links a:hover {
+      color: var(--purple-700);
+      background: var(--purple-50);
+    }
+    .nav-links a.active {
+      color: var(--purple-700);
+      background: var(--purple-50);
+      font-weight: 600;
+    }
+    .nav-links a i {
+      margin-right: 4px;
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--gray-700);
+      cursor: pointer;
+      padding: 0.3rem;
+      transition: all var(--transition);
+    }
+    .nav-toggle:hover {
+      color: var(--purple-700);
+    }
+    .hero-banner {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #f5eeff, #ede6ff, #faf5ff);
+      border: 1px solid rgba(192,132,252,0.15);
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 220px;
+      min-height: 60px;
+    }
+    .footer {
+      margin-top: 2.5rem;
+      padding: 1.2rem 0;
+      text-align: center;
+      border-top: 1px solid var(--gray-200);
+      color: var(--gray-600);
+      font-size: 0.8rem;
+    }
+    .footer a {
+      color: var(--purple-700);
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.4rem;
+    }
 
-        /* ===== NAVBAR ===== */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 0.6rem 1.4rem;
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(24px) saturate(1.3);
-            -webkit-backdrop-filter: blur(24px) saturate(1.3);
-            border-radius: 100px;
-            border: 1px solid rgba(192, 132, 252, 0.18);
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 2rem;
-            transition: all var(--transition);
-        }
-        .navbar:hover {
-            border-color: rgba(192, 132, 252, 0.3);
-            box-shadow: var(--shadow-md);
-        }
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            font-style: italic;
-            background: linear-gradient(135deg, var(--purple-800), var(--purple-500), var(--purple-400));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        .logo i {
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, var(--purple-500), var(--purple-700));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            flex-wrap: wrap;
-        }
-        .nav-links a {
-            color: var(--gray-700);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.85rem;
-            padding: 0.45rem 1rem;
-            border-radius: 100px;
-            transition: all var(--transition);
-        }
-        .nav-links a:hover {
-            color: var(--purple-700);
-            background: var(--purple-50);
-        }
-        .nav-links a.active {
-            color: var(--purple-700);
-            background: var(--purple-50);
-            font-weight: 600;
-        }
-        .nav-links a i {
-            margin-right: 4px;
-        }
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.4rem;
-            color: var(--gray-700);
-            cursor: pointer;
-            padding: 0.3rem;
-            transition: all var(--transition);
-        }
-        .nav-toggle:hover {
-            color: var(--purple-700);
-        }
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+    }
+    .stat-card:hover {
+      border-color: var(--purple-300);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--purple-800), var(--purple-500));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-top: 0.15rem;
+    }
 
-        /* ===== HERO BANNER ===== */
-        .hero-banner {
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, #f5eeff, #ede6ff, #faf5ff);
-            border: 1px solid rgba(192, 132, 252, 0.15);
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .hero-banner img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            max-height: 220px;
-            min-height: 60px;
-        }
+    /* Charts Grid */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .charts-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .chart-box {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 1.2rem;
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      min-width: 0;
+      overflow: hidden;
+    }
+    .chart-box h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--gray-800);
+    }
+    .chart-box h3 i {
+      color: var(--purple-500);
+    }
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .chart-container canvas {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    .history-table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      min-width: 400px;
+    }
+    .history-table th {
+      text-align: left;
+      padding: 0.5rem 0.5rem;
+      border-bottom: 2px solid var(--gray-200);
+      color: var(--gray-600);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      letter-spacing: 0.3px;
+    }
+    .history-table td {
+      padding: 0.4rem 0.5rem;
+      border-bottom: 1px solid var(--gray-100);
+      white-space: nowrap;
+    }
+    .history-table tr:hover td {
+      background: var(--purple-50);
+    }
+    .badge {
+      display: inline-block;
+      background: var(--purple-100);
+      color: var(--purple-800);
+      padding: 0.1rem 0.6rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .no-history {
+      padding: 1.5rem 0;
+      text-align: center;
+      color: var(--gray-600);
+    }
 
-        /* ===== FOOTER ===== */
-        .footer {
-            margin-top: 2.5rem;
-            padding: 1.2rem 0;
-            text-align: center;
-            border-top: 1px solid var(--gray-200);
-            color: var(--gray-600);
-            font-size: 0.8rem;
-        }
-        .footer a {
-            color: var(--purple-700);
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        .footer .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 0.4rem;
-        }
+    .hidden { display:none !important; }
+    .mt-2 { margin-top:1.5rem; }
+    .text-center { text-align:center; }
+    .text-muted { color:var(--gray-600); }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--purple-800), var(--purple-500));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(168,85,247,0.2);
+      border-radius: 50%;
+      border-top-color: var(--purple-600);
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform:rotate(360deg); }
+    }
 
-        /* ===== ANALYTICS INPUT ===== */
-        .analytics-input-wrap {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-        .analytics-input-wrap input {
-            flex: 1;
-            min-width: 200px;
-            background: var(--white);
-            border: 1.5px solid var(--gray-200);
-            border-radius: var(--radius-md);
-            padding: 0.9rem 1.2rem;
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--gray-900);
-            transition: all var(--transition);
-            font-family: 'Inter', sans-serif;
-        }
-        .analytics-input-wrap input:focus {
-            outline: none;
-            border-color: var(--purple-400);
-            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.10);
-        }
-        .analytics-input-wrap input::placeholder {
-            color: var(--gray-300);
-            font-weight: 400;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
-            border: none;
-            padding: 0.9rem 1.8rem;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            color: white;
-            transition: all var(--transition);
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(124, 58, 237, 0.35);
-        }
-
-        /* ===== STATS GRID ===== */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        .stat-card {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            padding: 1.2rem 0.8rem;
-            text-align: center;
-            border: 1px solid var(--gray-200);
-            box-shadow: var(--shadow-sm);
-            transition: all var(--transition);
-        }
-        .stat-card:hover {
-            border-color: var(--purple-300);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--purple-800), var(--purple-500));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.2;
-            word-break: break-word;
-        }
-        .stat-label {
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: var(--gray-600);
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin-top: 0.15rem;
-        }
-
-        /* ===== CHARTS GRID ===== */
-        .charts-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .charts-grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .chart-box {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            padding: 1.2rem;
-            border: 1px solid var(--gray-200);
-            box-shadow: var(--shadow-sm);
-            min-width: 0;
-            overflow: hidden;
-        }
-        .chart-box h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--gray-800);
-        }
-        .chart-box h3 i {
-            color: var(--purple-500);
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 100%;
-            overflow: hidden;
-        }
-        .chart-container canvas {
-            max-width: 100% !important;
-            height: auto !important;
-        }
-
-        /* ===== HISTORY TABLE ===== */
-        .history-table-wrap {
-            overflow-x: auto;
-            margin-top: 1rem;
-            -webkit-overflow-scrolling: touch;
-        }
-        .history-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            min-width: 400px;
-        }
-        .history-table th {
-            text-align: left;
-            padding: 0.5rem 0.5rem;
-            border-bottom: 2px solid var(--gray-200);
-            color: var(--gray-600);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.65rem;
-            letter-spacing: 0.3px;
-        }
-        .history-table td {
-            padding: 0.4rem 0.5rem;
-            border-bottom: 1px solid var(--gray-100);
-            white-space: nowrap;
-        }
-        .history-table tr:hover td {
-            background: var(--purple-50);
-        }
-        .badge {
-            display: inline-block;
-            background: var(--purple-100);
-            color: var(--purple-800);
-            padding: 0.1rem 0.6rem;
-            border-radius: 100px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-        .no-history {
-            padding: 1.5rem 0;
-            text-align: center;
-            color: var(--gray-600);
-        }
-
-        /* ===== UTILITY ===== */
-        .hidden {
-            display: none !important;
-        }
-        .mt-2 {
-            margin-top: 1.5rem;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .text-muted {
-            color: var(--gray-600);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, var(--purple-800), var(--purple-500));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .spinner {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            border: 3px solid rgba(168, 85, 247, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--purple-600);
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 0.8rem;
-            }
-            .glass {
-                padding: 1rem;
-                border-radius: var(--radius-md);
-            }
-            .navbar {
-                padding: 0.5rem 1rem;
-                border-radius: 80px;
-                margin-bottom: 1.2rem;
-            }
-            .logo {
-                font-size: 1.2rem;
-            }
-            .logo i {
-                font-size: 1rem;
-            }
-            .nav-toggle {
-                display: block;
-            }
-            .nav-links {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                align-items: stretch;
-                padding-top: 0.6rem;
-                border-top: 1px solid var(--gray-200);
-                margin-top: 0.6rem;
-                gap: 0.2rem;
-            }
-            .nav-links.open {
-                display: flex;
-            }
-            .nav-links a {
-                padding: 0.6rem 0.8rem;
-                font-size: 0.85rem;
-                border-radius: var(--radius-sm);
-                text-align: left;
-                width: 100%;
-            }
-            .hero-banner {
-                min-height: 60px;
-                border-radius: var(--radius-md);
-                margin-bottom: 1.2rem;
-            }
-            .hero-banner img {
-                max-height: 140px;
-                min-height: 50px;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.8rem;
-            }
-            .stat-number {
-                font-size: 1.3rem;
-            }
-            .charts-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            .charts-grid-2 {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            .chart-container {
-                height: 200px;
-            }
-            .chart-box {
-                padding: 0.8rem;
-            }
-            .chart-box h3 {
-                font-size: 0.9rem;
-            }
-            .analytics-input-wrap input {
-                min-width: 100%;
-            }
-            .analytics-input-wrap .btn-primary {
-                width: 100%;
-                justify-content: center;
-            }
-            .footer {
-                font-size: 0.7rem;
-                padding: 1rem 0;
-                margin-top: 1.5rem;
-            }
-            .footer .footer-links {
-                gap: 0.8rem;
-            }
-            .history-table {
-                font-size: 0.7rem;
-                min-width: 280px;
-            }
-            .history-table th,
-            .history-table td {
-                padding: 0.25rem 0.35rem;
-            }
-            .badge {
-                font-size: 0.55rem;
-                padding: 0.05rem 0.4rem;
-            }
-        }
-
-        @media (max-width: 420px) {
-            body {
-                padding: 0.5rem;
-            }
-            .glass {
-                padding: 0.6rem;
-                border-radius: var(--radius-sm);
-            }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem;
-            }
-            .stat-card {
-                padding: 0.7rem 0.4rem;
-            }
-            .stat-number {
-                font-size: 1.1rem;
-            }
-            .stat-label {
-                font-size: 0.55rem;
-            }
-            .navbar {
-                padding: 0.4rem 0.8rem;
-                border-radius: 60px;
-            }
-            .logo {
-                font-size: 1rem;
-            }
-            .chart-container {
-                height: 160px;
-            }
-            .hero-banner img {
-                max-height: 100px;
-            }
-            .footer .footer-links {
-                gap: 0.6rem;
-            }
-        }
-
-        @media (max-width: 768px) and (orientation: landscape) {
-            .navbar {
-                padding: 0.3rem 1rem;
-            }
-            .hero-banner {
-                min-height: 50px;
-            }
-            .hero-banner img {
-                max-height: 100px;
-            }
-            .charts-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .charts-grid-2 {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (pointer: coarse) {
-            .btn-primary,
-            .nav-links a {
-                min-height: 44px;
-                min-width: 44px;
-            }
-            .nav-links a {
-                min-height: 40px;
-            }
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--gray-100);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--purple-300);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--purple-400);
-        }
-    </style>
+    @media (max-width:1024px) {
+      .stats-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:768px) {
+      body { padding:0.8rem; }
+      .glass { padding:1rem; border-radius:var(--radius-md); }
+      .navbar { padding:0.5rem 1rem; border-radius:80px; margin-bottom:1.2rem; }
+      .logo { font-size:1.2rem; }
+      .logo i { font-size:1rem; }
+      .nav-toggle { display:block; }
+      .nav-links {
+        display:none;
+        width:100%;
+        flex-direction:column;
+        align-items:stretch;
+        padding-top:0.6rem;
+        border-top:1px solid var(--gray-200);
+        margin-top:0.6rem;
+        gap:0.2rem;
+      }
+      .nav-links.open { display:flex; }
+      .nav-links a { padding:0.6rem 0.8rem; font-size:0.85rem; border-radius:var(--radius-sm); text-align:left; width:100%; }
+      .hero-banner { min-height:60px; border-radius:var(--radius-md); margin-bottom:1.2rem; }
+      .hero-banner img { max-height:140px; min-height:50px; }
+      .stats-grid { grid-template-columns:1fr 1fr; gap:0.8rem; }
+      .stat-number { font-size:1.3rem; }
+      .charts-grid { grid-template-columns:1fr; gap:1rem; }
+      .charts-grid-2 { grid-template-columns:1fr; gap:1rem; }
+      .chart-container { height:200px; }
+      .chart-box { padding:0.8rem; }
+      .chart-box h3 { font-size:0.9rem; }
+      .footer { font-size:0.7rem; padding:1rem 0; margin-top:1.5rem; }
+      .footer .footer-links { gap:0.8rem; }
+      .history-table { font-size:0.7rem; min-width:280px; }
+      .history-table th, .history-table td { padding:0.25rem 0.35rem; }
+      .badge { font-size:0.55rem; padding:0.05rem 0.4rem; }
+    }
+    @media (max-width:420px) {
+      body { padding:0.5rem; }
+      .glass { padding:0.6rem; border-radius:var(--radius-sm); }
+      .stats-grid { grid-template-columns:1fr 1fr; gap:0.5rem; }
+      .stat-card { padding:0.7rem 0.4rem; }
+      .stat-number { font-size:1.1rem; }
+      .stat-label { font-size:0.55rem; }
+      .navbar { padding:0.4rem 0.8rem; border-radius:60px; }
+      .logo { font-size:1rem; }
+      .chart-container { height:160px; }
+      .hero-banner img { max-height:100px; }
+    }
+    @media (max-width:768px) and (orientation:landscape) {
+      .navbar { padding:0.3rem 1rem; }
+      .hero-banner { min-height:50px; }
+      .hero-banner img { max-height:100px; }
+      .charts-grid { grid-template-columns:1fr 1fr; }
+      .charts-grid-2 { grid-template-columns:1fr 1fr; }
+    }
+    @media (pointer:coarse) {
+      .btn-primary, .nav-links a { min-height:44px; min-width:44px; }
+      .nav-links a { min-height:40px; }
+    }
+    ::-webkit-scrollbar { width:6px; height:6px; }
+    ::-webkit-scrollbar-track { background:var(--gray-100); border-radius:10px; }
+    ::-webkit-scrollbar-thumb { background:var(--purple-300); border-radius:10px; }
+    ::-webkit-scrollbar-thumb:hover { background:var(--purple-400); }
+  </style>
 </head>
 <body>
 
-    <div class="container">
+  <div class="container">
 
-        <!-- ===== NAVBAR ===== -->
-        <nav class="navbar">
-            <div class="logo"><i class="fas fa-link"></i> Sarthak URL</div>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="nav-links" id="navLinks">
-                <a href="/"><i class="fas fa-home"></i> Home</a>
-                <a href="/api"><i class="fas fa-code"></i> API</a>
-                <a href="/analytics" class="active"><i class="fas fa-chart-line"></i> View Analytics</a>
-                <a href="/privacy"><i class="fas fa-shield-alt"></i> Privacy</a>
-                <a href="/terms"><i class="fas fa-file-contract"></i> Terms</a>
-                <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
-            </div>
-        </nav>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo"><i class="fas fa-link"></i> Sarthak URL</div>
+      <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+      <div class="nav-links" id="navLinks">
+        <a href="/">Home</a>
+        <a href="/api">API</a>
+        <a href="/analytics" class="active"><i class="fas fa-chart-line"></i> View Analytics</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </nav>
 
-        <!-- ===== HERO BANNER ===== -->
-        <div class="hero-banner">
-            <img src="/assets/banner.jpg" alt="Sarthak URL Analytics Dashboard" />
-        </div>
-
-        <!-- ===== MAIN CONTENT ===== -->
-        <div class="glass">
-            <div class="glass-inner">
-                <h1 style="font-size:1.8rem; font-weight:700; margin-bottom:0.5rem;">
-                    <i class="fas fa-chart-line" style="color:var(--purple-500);"></i>
-                    <span class="gradient-text">Analytics</span>
-                </h1>
-                <p style="color:var(--gray-600); margin-bottom:1.5rem;">Paste your short URL or slug to view detailed click statistics.</p>
-
-                <!-- ===== INPUT ===== -->
-                <div class="analytics-input-wrap">
-                    <input type="text" id="slugInput" placeholder="e.g. https://sarthakurl.vercel.app/abc123 or just abc123" />
-                    <button id="loadAnalyticsBtn" class="btn-primary"><i class="fas fa-search"></i> Load Analytics</button>
-                </div>
-
-                <!-- ===== LOADING ===== -->
-                <div id="loading" class="text-center" style="padding:2rem 0; display:none;">
-                    <div class="spinner" style="margin:0 auto;"></div>
-                    <p style="margin-top:0.8rem; color:var(--gray-600);">Loading analytics...</p>
-                </div>
-
-                <!-- ===== ERROR ===== -->
-                <div id="error" class="text-center" style="padding:2rem 0; display:none; color:#b91c1c;">
-                    <i class="fas fa-exclamation-circle fa-2x"></i>
-                    <p style="margin-top:0.5rem;" id="errorMsg">Something went wrong.</p>
-                </div>
-
-                <!-- ===== DASHBOARD ===== -->
-                <div id="dashboard" class="hidden">
-
-                    <!-- Stats -->
-                    <div class="stats-grid" id="statsGrid"></div>
-
-                    <!-- Charts: 7-Day + Device -->
-                    <div class="charts-grid">
-                        <div class="chart-box">
-                            <h3><i class="fas fa-calendar-day"></i> Last 7 Days</h3>
-                            <div class="chart-container" style="height:220px;">
-                                <canvas id="dailyChart"></canvas>
-                            </div>
-                        </div>
-                        <div class="chart-box">
-                            <h3><i class="fas fa-globe"></i> Device Breakdown</h3>
-                            <div class="chart-container" style="height:220px;">
-                                <canvas id="deviceChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Charts: Browsers + Countries -->
-                    <div class="charts-grid-2">
-                        <div class="chart-box">
-                            <h3><i class="fas fa-browser"></i> Browsers</h3>
-                            <div class="chart-container" style="height:180px;">
-                                <canvas id="browserChart"></canvas>
-                            </div>
-                        </div>
-                        <div class="chart-box">
-                            <h3><i class="fas fa-map-marker-alt"></i> Countries</h3>
-                            <div class="chart-container" style="height:180px;">
-                                <canvas id="countryChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Recent History -->
-                    <div class="chart-box" style="margin-top:1.5rem;">
-                        <h3><i class="fas fa-history"></i> Recent Clicks</h3>
-                        <div class="history-table-wrap">
-                            <table class="history-table">
-                                <thead>
-                                    <tr>
-                                        <th>Time</th>
-                                        <th>Device</th>
-                                        <th>Browser</th>
-                                        <th>Country</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="historyBody"></tbody>
-                            </table>
-                        </div>
-                        <div id="noHistory" class="no-history">No clicks yet. Share your link!</div>
-                    </div>
-
-                </div><!-- /dashboard -->
-            </div><!-- /glass-inner -->
-        </div><!-- /glass -->
-
-        <!-- ===== FOOTER ===== -->
-        <footer class="footer">
-            <p>&copy; 2026 Sarthak URL. <strong>Developed by Sarthak</strong></p>
-            <div class="footer-links">
-                <a href="/privacy">Privacy</a>
-                <a href="/terms">Terms</a>
-                <a href="/contact">Contact</a>
-                <a href="/api">API Docs</a>
-                <!-- View Analytics removed from footer -->
-            </div>
-        </footer>
-
+    <!-- HERO BANNER -->
+    <div class="hero-banner">
+      <img src="/assets/banner.jpg" alt="Sarthak URL Analytics Dashboard" />
     </div>
 
-    <!-- ============================================================ -->
-    <!-- JAVASCRIPT -->
-    <!-- ============================================================ -->
-    <script>
-        (function() {
-            'use strict';
+    <!-- MAIN CONTENT -->
+    <div class="glass">
+      <div class="glass-inner">
+        <h1 style="font-size:1.8rem; font-weight:700; margin-bottom:0.5rem;">
+          <i class="fas fa-chart-line" style="color:var(--purple-500);"></i>
+          <span class="gradient-text">Link Analytics</span>
+        </h1>
+        <p style="color:var(--gray-600); margin-bottom:1.5rem;">View detailed click statistics for your short links.</p>
 
-            // ===== DOM REFS =====
-            const slugInput = document.getElementById('slugInput');
-            const loadBtn = document.getElementById('loadAnalyticsBtn');
-            const dashboard = document.getElementById('dashboard');
-            const loading = document.getElementById('loading');
-            const errorDiv = document.getElementById('error');
-            const errorMsg = document.getElementById('errorMsg');
-            const statsGrid = document.getElementById('statsGrid');
-            const historyBody = document.getElementById('historyBody');
-            const noHistory = document.getElementById('noHistory');
-            const navToggle = document.getElementById('navToggle');
-            const navLinks = document.getElementById('navLinks');
+        <!-- Loading -->
+        <div id="loading" class="text-center" style="padding:2rem 0; display:none;">
+          <div class="spinner" style="margin:0 auto;"></div>
+          <p style="margin-top:0.8rem; color:var(--gray-600);">Loading analytics...</p>
+        </div>
 
-            // ===== NAV TOGGLE =====
-            navToggle.addEventListener('click', function() {
-                const isOpen = navLinks.classList.toggle('open');
-                this.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            });
+        <!-- Error -->
+        <div id="error" class="text-center" style="padding:2rem 0; display:none; color:#b91c1c;">
+          <i class="fas fa-exclamation-circle fa-2x"></i>
+          <p style="margin-top:0.5rem;" id="errorMsg">Something went wrong.</p>
+        </div>
 
-            // ===== EXTRACT SLUG =====
-            function extractSlug(input) {
-                input = input.trim();
-                if (!input) return null;
-                const urlPattern = /^https?:\/\/[^\/]+\/([^\/?#]+)/;
-                const match = input.match(urlPattern);
-                if (match) return match[1];
-                return input;
+        <!-- Dashboard -->
+        <div id="dashboard" class="hidden">
+          <div class="stats-grid" id="statsGrid"></div>
+
+          <div class="charts-grid">
+            <div class="chart-box">
+              <h3><i class="fas fa-calendar-day"></i> Last 7 Days</h3>
+              <div class="chart-container" style="height:220px;">
+                <canvas id="dailyChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-box">
+              <h3><i class="fas fa-globe"></i> Device Breakdown</h3>
+              <div class="chart-container" style="height:220px;">
+                <canvas id="deviceChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="charts-grid-2">
+            <div class="chart-box">
+              <h3><i class="fas fa-browser"></i> Browsers</h3>
+              <div class="chart-container" style="height:180px;">
+                <canvas id="browserChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-box">
+              <h3><i class="fas fa-map-marker-alt"></i> Countries</h3>
+              <div class="chart-container" style="height:180px;">
+                <canvas id="countryChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent History -->
+          <div class="chart-box" style="margin-top:1.5rem;">
+            <h3><i class="fas fa-history"></i> Recent Clicks</h3>
+            <div class="history-table-wrap">
+              <table class="history-table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Device</th>
+                    <th>Browser</th>
+                    <th>Country</th>
+                  </tr>
+                </thead>
+                <tbody id="historyBody"></tbody>
+              </table>
+            </div>
+            <div id="noHistory" class="no-history">No clicks yet. Share your link!</div>
+          </div>
+        </div>
+
+        <!-- Unauthorized / Not logged in -->
+        <div id="authRequired" class="text-center" style="padding:2rem 0; display:none;">
+          <i class="fas fa-lock fa-2x" style="color:var(--purple-500);"></i>
+          <p style="margin-top:0.8rem; color:var(--gray-600);">Please <a href="/login" style="color:var(--purple-700); font-weight:500;">log in</a> to view analytics for your links.</p>
+        </div>
+
+        <!-- Not owner -->
+        <div id="notOwner" class="text-center" style="padding:2rem 0; display:none; color:#b91c1c;">
+          <i class="fas fa-exclamation-triangle fa-2x"></i>
+          <p style="margin-top:0.5rem;">You don't have access to this link's analytics.</p>
+        </div>
+
+        <!-- No slug provided -->
+        <div id="noSlug" class="text-center" style="padding:2rem 0; display:none;">
+          <i class="fas fa-link fa-2x" style="color:var(--purple-300);"></i>
+          <p style="margin-top:0.8rem; color:var(--gray-600);">No link specified. Go to <a href="/" style="color:var(--purple-700);">home</a> and generate a short link first.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>&copy; 2026 Sarthak URL. <strong>Developed by Sarthak</strong></p>
+      <div class="footer-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/contact">Contact</a>
+        <a href="/api">API Docs</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const loading = document.getElementById('loading');
+      const dashboard = document.getElementById('dashboard');
+      const errorDiv = document.getElementById('error');
+      const errorMsg = document.getElementById('errorMsg');
+      const authRequired = document.getElementById('authRequired');
+      const notOwner = document.getElementById('notOwner');
+      const noSlug = document.getElementById('noSlug');
+      const statsGrid = document.getElementById('statsGrid');
+      const historyBody = document.getElementById('historyBody');
+      const noHistory = document.getElementById('noHistory');
+
+      let chartInstances = {};
+
+      // Get slug from URL
+      function getSlugFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('slug');
+      }
+
+      async function loadAnalytics() {
+        const slug = getSlugFromURL();
+        if (!slug) {
+          noSlug.style.display = 'block';
+          return;
+        }
+
+        loading.style.display = 'block';
+        dashboard.classList.add('hidden');
+        errorDiv.style.display = 'none';
+        authRequired.style.display = 'none';
+        notOwner.style.display = 'none';
+        noSlug.style.display = 'none';
+
+        try {
+          const response = await fetch(`/api/analytics/${slug}`, { credentials: 'include' });
+          if (response.status === 401) {
+            loading.style.display = 'none';
+            authRequired.style.display = 'block';
+            return;
+          }
+          if (response.status === 403) {
+            loading.style.display = 'none';
+            notOwner.style.display = 'block';
+            return;
+          }
+          if (!response.ok) {
+            const text = await response.text();
+            throw new Error(text || `HTTP ${response.status}`);
+          }
+          const data = await response.json();
+          renderStats(data);
+          renderCharts(data);
+          renderHistory(data.history || []);
+          dashboard.classList.remove('hidden');
+          loading.style.display = 'none';
+
+        } catch (err) {
+          console.error(err);
+          errorMsg.textContent = err.message || 'Failed to load analytics.';
+          errorDiv.style.display = 'block';
+          loading.style.display = 'none';
+          dashboard.classList.add('hidden');
+        }
+      }
+
+      function renderStats(data) {
+        const lastClick = data.lastClick ? new Date(data.lastClick).toLocaleString() : 'Never';
+        statsGrid.innerHTML = `
+          <div class="stat-card">
+            <div class="stat-number">${data.total}</div>
+            <div class="stat-label">Total Clicks</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">${data.uniqueVisitors}</div>
+            <div class="stat-label">Unique Visitors</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">${lastClick}</div>
+            <div class="stat-label">Last Click</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">${data.history.length}</div>
+            <div class="stat-label">Recent Clicks</div>
+          </div>
+        `;
+      }
+
+      function renderCharts(data) {
+        Object.values(chartInstances).forEach(chart => chart.destroy());
+        chartInstances = {};
+        const isMobile = window.innerWidth < 768;
+
+        // 7-day chart
+        const labels = data.chartData.map(d => d.date);
+        const values = data.chartData.map(d => d.clicks);
+        const ctxDaily = document.getElementById('dailyChart').getContext('2d');
+        chartInstances.daily = new Chart(ctxDaily, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Clicks',
+              data: values,
+              borderColor: '#3b82f6',
+              backgroundColor: 'rgba(59,130,246,0.15)',
+              borderWidth: 3,
+              tension: 0.3,
+              fill: true,
+              pointBackgroundColor: '#3b82f6',
+              pointBorderColor: '#ffffff',
+              pointBorderWidth: 2,
+              pointRadius: isMobile ? 3 : 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: isMobile ? 9 : 11 } } },
+              x: { ticks: { font: { size: isMobile ? 8 : 10 }, maxRotation: 30 } }
             }
+          }
+        });
 
-            // ===== CHART INSTANCES =====
-            let chartInstances = {};
-
-            // ===== RENDER STATS =====
-            function renderStats(data) {
-                const lastClick = data.lastClick ? new Date(data.lastClick).toLocaleString() : 'Never';
-                statsGrid.innerHTML = `
-                    <div class="stat-card">
-                        <div class="stat-number">${data.total}</div>
-                        <div class="stat-label">Total Clicks</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${data.uniqueVisitors}</div>
-                        <div class="stat-label">Unique Visitors</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${lastClick}</div>
-                        <div class="stat-label">Last Click</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${data.history.length}</div>
-                        <div class="stat-label">Recent Clicks</div>
-                    </div>
-                `;
+        // Device pie
+        const devices = data.devices || {};
+        const deviceLabels = Object.keys(devices);
+        const deviceValues = Object.values(devices);
+        const deviceColors = ['#8b5cf6','#06b6d4','#f59e0b','#ef4444','#10b981','#ec4899'];
+        const ctxDevice = document.getElementById('deviceChart').getContext('2d');
+        chartInstances.device = new Chart(ctxDevice, {
+          type: 'pie',
+          data: {
+            labels: deviceLabels,
+            datasets: [{
+              data: deviceValues,
+              backgroundColor: deviceColors.slice(0, deviceLabels.length),
+              borderWidth: 2,
+              borderColor: '#ffffff'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { boxWidth: 12, padding: isMobile ? 6 : 12, font: { size: isMobile ? 10 : 12 } }
+              }
             }
+          }
+        });
 
-            // ===== RENDER CHARTS (VIBRANT MULTI-COLOR) =====
-            function renderCharts(data) {
-                // Destroy existing charts
-                Object.values(chartInstances).forEach(chart => chart.destroy());
-                chartInstances = {};
-
-                const isMobile = window.innerWidth < 768;
-
-                // --- 7-Day Chart (Line) – Blue to Purple gradient ---
-                const labels = data.chartData.map(d => d.date);
-                const values = data.chartData.map(d => d.clicks);
-                const ctxDaily = document.getElementById('dailyChart').getContext('2d');
-                chartInstances.daily = new Chart(ctxDaily, {
-                    type: 'line',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Clicks',
-                            data: values,
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59, 130, 246, 0.15)',
-                            borderWidth: 3,
-                            tension: 0.3,
-                            fill: true,
-                            pointBackgroundColor: '#3b82f6',
-                            pointBorderColor: '#ffffff',
-                            pointBorderWidth: 2,
-                            pointRadius: isMobile ? 3 : 4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: {
-                            y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: isMobile ? 9 : 11 } } },
-                            x: { ticks: { font: { size: isMobile ? 8 : 10 }, maxRotation: 30 } }
-                        }
-                    }
-                });
-
-                // --- Device Chart (Pie) – Vibrant rainbow ---
-                const devices = data.devices || {};
-                const deviceLabels = Object.keys(devices);
-                const deviceValues = Object.values(devices);
-                const deviceColors = ['#8b5cf6', '#06b6d4', '#f59e0b', '#ef4444', '#10b981', '#ec4899'];
-                const ctxDevice = document.getElementById('deviceChart').getContext('2d');
-                chartInstances.device = new Chart(ctxDevice, {
-                    type: 'pie',
-                    data: {
-                        labels: deviceLabels,
-                        datasets: [{
-                            data: deviceValues,
-                            backgroundColor: deviceColors.slice(0, deviceLabels.length),
-                            borderWidth: 2,
-                            borderColor: '#ffffff'
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: { boxWidth: 12, padding: isMobile ? 6 : 12, font: { size: isMobile ? 10 : 12 } }
-                            }
-                        }
-                    }
-                });
-
-                // --- Browser Chart (Bar) – Multi-color palette ---
-                const browsers = data.browsers || {};
-                const browserLabels = Object.keys(browsers);
-                const browserValues = Object.values(browsers);
-                const browserColors = ['#8b5cf6', '#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#06b6d4', '#ec4899', '#f97316'];
-                const ctxBrowser = document.getElementById('browserChart').getContext('2d');
-                chartInstances.browser = new Chart(ctxBrowser, {
-                    type: 'bar',
-                    data: {
-                        labels: browserLabels,
-                        datasets: [{
-                            data: browserValues,
-                            backgroundColor: browserColors.slice(0, browserLabels.length),
-                            borderRadius: 6,
-                            borderSkipped: false
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: {
-                            y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: isMobile ? 9 : 11 } } },
-                            x: { ticks: { font: { size: isMobile ? 8 : 10 } } }
-                        }
-                    }
-                });
-
-                // --- Country Chart (Bar) – Rich diverse colors ---
-                const countries = data.countries || {};
-                const countryLabels = Object.keys(countries);
-                const countryValues = Object.values(countries);
-                const countryColors = ['#8b5cf6', '#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#06b6d4', '#ec4899', '#14b8a6', '#f97316', '#6366f1'];
-                const ctxCountry = document.getElementById('countryChart').getContext('2d');
-                chartInstances.country = new Chart(ctxCountry, {
-                    type: 'bar',
-                    data: {
-                        labels: countryLabels,
-                        datasets: [{
-                            data: countryValues,
-                            backgroundColor: countryColors.slice(0, countryLabels.length),
-                            borderRadius: 6,
-                            borderSkipped: false
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: {
-                            y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: isMobile ? 9 : 11 } } },
-                            x: { ticks: { font: { size: isMobile ? 7 : 10 }, maxRotation: 30 } }
-                        }
-                    }
-                });
+        // Browsers bar
+        const browsers = data.browsers || {};
+        const browserLabels = Object.keys(browsers);
+        const browserValues = Object.values(browsers);
+        const browserColors = ['#8b5cf6','#3b82f6','#10b981','#f59e0b','#ef4444','#06b6d4','#ec4899','#f97316'];
+        const ctxBrowser = document.getElementById('browserChart').getContext('2d');
+        chartInstances.browser = new Chart(ctxBrowser, {
+          type: 'bar',
+          data: {
+            labels: browserLabels,
+            datasets: [{
+              data: browserValues,
+              backgroundColor: browserColors.slice(0, browserLabels.length),
+              borderRadius: 6,
+              borderSkipped: false
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: isMobile ? 9 : 11 } } },
+              x: { ticks: { font: { size: isMobile ? 8 : 10 } } }
             }
+          }
+        });
 
-            // ===== RENDER HISTORY =====
-            function renderHistory(history) {
-                const tbody = historyBody;
-                tbody.innerHTML = '';
-                if (!history || history.length === 0) {
-                    noHistory.style.display = 'block';
-                    return;
-                }
-                noHistory.style.display = 'none';
-                history.forEach(click => {
-                    const tr = document.createElement('tr');
-                    const time = new Date(click.timestamp).toLocaleString();
-                    tr.innerHTML = `
-                        <td>${time}</td>
-                        <td><span class="badge">${click.device || 'Unknown'}</span></td>
-                        <td><span class="badge">${click.browser || 'Unknown'}</span></td>
-                        <td>${click.country || 'Unknown'}</td>
-                    `;
-                    tbody.appendChild(tr);
-                });
+        // Countries bar
+        const countries = data.countries || {};
+        const countryLabels = Object.keys(countries);
+        const countryValues = Object.values(countries);
+        const countryColors = ['#8b5cf6','#3b82f6','#10b981','#f59e0b','#ef4444','#06b6d4','#ec4899','#14b8a6','#f97316','#6366f1'];
+        const ctxCountry = document.getElementById('countryChart').getContext('2d');
+        chartInstances.country = new Chart(ctxCountry, {
+          type: 'bar',
+          data: {
+            labels: countryLabels,
+            datasets: [{
+              data: countryValues,
+              backgroundColor: countryColors.slice(0, countryLabels.length),
+              borderRadius: 6,
+              borderSkipped: false
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: isMobile ? 9 : 11 } } },
+              x: { ticks: { font: { size: isMobile ? 7 : 10 }, maxRotation: 30 } }
             }
+          }
+        });
+      }
 
-            // ===== LOAD ANALYTICS =====
-            async function loadAnalytics() {
-                const raw = slugInput.value.trim();
-                const slug = extractSlug(raw);
-                if (!slug) {
-                    alert('Please enter a valid short URL or slug.');
-                    return;
-                }
+      function renderHistory(history) {
+        const tbody = historyBody;
+        tbody.innerHTML = '';
+        if (!history || history.length === 0) {
+          noHistory.style.display = 'block';
+          return;
+        }
+        noHistory.style.display = 'none';
+        history.forEach(click => {
+          const tr = document.createElement('tr');
+          const time = new Date(click.timestamp).toLocaleString();
+          tr.innerHTML = `
+            <td>${time}</td>
+            <td><span class="badge">${click.device || 'Unknown'}</span></td>
+            <td><span class="badge">${click.browser || 'Unknown'}</span></td>
+            <td>${click.country || 'Unknown'}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
 
-                loading.style.display = 'block';
-                dashboard.classList.add('hidden');
-                errorDiv.style.display = 'none';
+      // Nav toggle
+      document.getElementById('navToggle').addEventListener('click', function() {
+        const links = document.getElementById('navLinks');
+        links.classList.toggle('open');
+        this.innerHTML = links.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+      });
 
-                try {
-                    const response = await fetch(`/api/analytics/${slug}`);
-                    if (!response.ok) {
-                        const text = await response.text();
-                        throw new Error(text || `HTTP ${response.status}`);
-                    }
-                    const data = await response.json();
+      // Load on page load
+      loadAnalytics();
 
-                    renderStats(data);
-                    renderCharts(data);
-                    renderHistory(data.history || []);
-                    dashboard.classList.remove('hidden');
-                    loading.style.display = 'none';
+      // Reload charts on resize (debounced)
+      let resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          const slug = getSlugFromURL();
+          if (slug) {
+            fetch(`/api/analytics/${slug}`, { credentials: 'include' })
+              .then(r => r.json())
+              .then(data => renderCharts(data))
+              .catch(() => {});
+          }
+        }, 500);
+      });
 
-                } catch (err) {
-                    console.error(err);
-                    errorMsg.textContent = err.message || 'Failed to load analytics. Check the slug.';
-                    errorDiv.style.display = 'block';
-                    loading.style.display = 'none';
-                    dashboard.classList.add('hidden');
-                }
-            }
-
-            // ===== EVENTS =====
-            loadBtn.addEventListener('click', loadAnalytics);
-            slugInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') loadAnalytics();
-            });
-
-            // ===== RESIZE HANDLER (rebuild charts on resize) =====
-            let resizeTimer;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => {
-                    if (!dashboard.classList.contains('hidden')) {
-                        const slug = extractSlug(slugInput.value.trim());
-                        if (slug) {
-                            fetch(`/api/analytics/${slug}`)
-                                .then(r => r.json())
-                                .then(data => renderCharts(data))
-                                .catch(() => {});
-                        }
-                    }
-                }, 500);
-            });
-
-            // ===== AUTO-LOAD FROM URL PARAM =====
-            (function() {
-                const params = new URLSearchParams(window.location.search);
-                const slugParam = params.get('slug');
-                if (slugParam) {
-                    slugInput.value = slugParam;
-                    loadAnalytics();
-                }
-            })();
-
-        })();
-    </script>
-
+    })();
+  </script>
 </body>
 </html>
