@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-  <title>Sarthak URL – Analytics</title>
+  <title>Sarthak URL – Analytics Dashboard</title>
   <link rel="canonical" href="https://sarthakurll.vercel.app/analytics" />
   <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -86,10 +86,7 @@
       margin-bottom: 2rem;
       transition: all var(--transition);
     }
-    .navbar:hover {
-      border-color: rgba(192,132,252,0.3);
-      box-shadow: var(--shadow-md);
-    }
+    .navbar:hover { border-color:rgba(192,132,252,0.3); box-shadow:var(--shadow-md); }
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
@@ -103,13 +100,7 @@
       align-items: center;
       gap: 0.4rem;
     }
-    .logo i {
-      font-size: 1.2rem;
-      background: linear-gradient(135deg, var(--purple-500), var(--purple-700));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+    .logo i { font-size:1.2rem; background:linear-gradient(135deg,var(--purple-500),var(--purple-700)); -webkit-background-clip:text; background-clip:text; color:transparent; }
     .nav-links {
       display: flex;
       align-items: center;
@@ -125,18 +116,9 @@
       border-radius: 100px;
       transition: all var(--transition);
     }
-    .nav-links a:hover {
-      color: var(--purple-700);
-      background: var(--purple-50);
-    }
-    .nav-links a.active {
-      color: var(--purple-700);
-      background: var(--purple-50);
-      font-weight: 600;
-    }
-    .nav-links a i {
-      margin-right: 4px;
-    }
+    .nav-links a:hover { color:var(--purple-700); background:var(--purple-50); }
+    .nav-links a.active { color:var(--purple-700); background:var(--purple-50); font-weight:600; }
+    .nav-links a i { margin-right:4px; }
     .nav-toggle {
       display: none;
       background: none;
@@ -147,9 +129,69 @@
       padding: 0.3rem;
       transition: all var(--transition);
     }
-    .nav-toggle:hover {
-      color: var(--purple-700);
+    .nav-toggle:hover { color:var(--purple-700); }
+    /* Avatar & Dropdown */
+    .avatar-wrap {
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      gap:0.5rem;
+      cursor:pointer;
+      margin-left:0.5rem;
     }
+    .avatar {
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--purple-500),var(--purple-700));
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+      font-size:1rem;
+      text-transform:uppercase;
+      transition:all 0.2s;
+      user-select:none;
+      border:2px solid rgba(255,255,255,0.5);
+      box-shadow:0 2px 8px rgba(107,70,193,0.15);
+    }
+    .avatar:hover { transform:scale(1.05); box-shadow:0 4px 16px rgba(107,70,193,0.25); }
+    .avatar-wrap .dropdown {
+      display:none;
+      position:absolute;
+      top:calc(100% + 8px);
+      right:0;
+      min-width:220px;
+      background:rgba(255,255,255,0.98);
+      backdrop-filter:blur(16px);
+      border-radius:var(--radius-md);
+      border:1px solid rgba(192,132,252,0.2);
+      box-shadow:var(--shadow-md);
+      padding:0;
+      z-index:100;
+      overflow:hidden;
+    }
+    .avatar-wrap .dropdown.open { display:block; }
+    .avatar-wrap .dropdown .dropdown-item {
+      display:flex;
+      align-items:center;
+      gap:0.6rem;
+      padding:0.6rem 1.2rem;
+      color:var(--gray-700);
+      text-decoration:none;
+      font-size:0.85rem;
+      font-weight:500;
+      transition:0.15s;
+      border:none;
+      background:none;
+      width:100%;
+      text-align:left;
+      cursor:pointer;
+      font-family:'Inter',sans-serif;
+    }
+    .avatar-wrap .dropdown .dropdown-item:hover { background:var(--purple-50); color:var(--purple-700); }
+    .avatar-wrap .dropdown .dropdown-item i { width:1.2rem; color:var(--purple-500); }
     .hero-banner {
       border-radius: var(--radius-lg);
       overflow: hidden;
@@ -161,14 +203,7 @@
       align-items: center;
       justify-content: center;
     }
-    .hero-banner img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-      max-height: 220px;
-      min-height: 60px;
-    }
+    .hero-banner img { width:100%; height:auto; display:block; object-fit:cover; max-height:220px; min-height:60px; }
     .footer {
       margin-top: 2.5rem;
       padding: 1.2rem 0;
@@ -177,22 +212,24 @@
       color: var(--gray-600);
       font-size: 0.8rem;
     }
-    .footer a {
-      color: var(--purple-700);
-      text-decoration: none;
-    }
-    .footer a:hover {
-      text-decoration: underline;
-    }
-    .footer .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-top: 0.4rem;
-    }
+    .footer a { color:var(--purple-700); text-decoration:none; }
+    .footer a:hover { text-decoration:underline; }
+    .footer .footer-links { display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; margin-top:0.4rem; }
 
-    /* Stats Grid */
+    /* My Links Table */
+    .my-links-section { margin-bottom:2rem; }
+    .my-links-section h3 { font-size:1.2rem; font-weight:700; margin-bottom:0.8rem; display:flex; align-items:center; gap:0.5rem; }
+    .links-table-wrap { overflow-x:auto; border-radius:var(--radius-md); border:1px solid var(--gray-200); background:white; }
+    .links-table { width:100%; border-collapse:collapse; font-size:0.9rem; }
+    .links-table th { text-align:left; padding:0.8rem 1rem; border-bottom:2px solid var(--gray-200); color:var(--gray-600); font-weight:600; text-transform:uppercase; font-size:0.7rem; letter-spacing:0.3px; background:var(--gray-50); }
+    .links-table td { padding:0.7rem 1rem; border-bottom:1px solid var(--gray-100); }
+    .links-table tr:hover td { background:var(--purple-50); }
+    .links-table .link-cell { color:var(--purple-700); text-decoration:none; font-weight:500; }
+    .links-table .link-cell:hover { text-decoration:underline; }
+    .links-table .clicks-badge { background:var(--purple-100); color:var(--purple-800); padding:0.1rem 0.6rem; border-radius:100px; font-size:0.7rem; font-weight:500; }
+    .no-links-msg { padding:1.5rem; text-align:center; color:var(--gray-600); }
+
+    /* Analytics Detail */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -208,31 +245,9 @@
       box-shadow: var(--shadow-sm);
       transition: all var(--transition);
     }
-    .stat-card:hover {
-      border-color: var(--purple-300);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-    .stat-number {
-      font-size: 1.8rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--purple-800), var(--purple-500));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      line-height: 1.2;
-      word-break: break-word;
-    }
-    .stat-label {
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: var(--gray-600);
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      margin-top: 0.15rem;
-    }
-
-    /* Charts Grid */
+    .stat-card:hover { border-color:var(--purple-300); transform:translateY(-4px); box-shadow:var(--shadow-md); }
+    .stat-number { font-size:1.8rem; font-weight:800; background:linear-gradient(135deg,var(--purple-800),var(--purple-500)); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1.2; word-break:break-word; }
+    .stat-label { font-size:0.7rem; font-weight:500; color:var(--gray-600); text-transform:uppercase; letter-spacing:0.3px; margin-top:0.15rem; }
     .charts-grid {
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -254,99 +269,26 @@
       min-width: 0;
       overflow: hidden;
     }
-    .chart-box h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--gray-800);
-    }
-    .chart-box h3 i {
-      color: var(--purple-500);
-    }
-    .chart-container {
-      position: relative;
-      width: 100%;
-      max-width: 100%;
-      overflow: hidden;
-    }
-    .chart-container canvas {
-      max-width: 100% !important;
-      height: auto !important;
-    }
-    .history-table-wrap {
-      overflow-x: auto;
-      margin-top: 1rem;
-      -webkit-overflow-scrolling: touch;
-    }
-    .history-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      min-width: 400px;
-    }
-    .history-table th {
-      text-align: left;
-      padding: 0.5rem 0.5rem;
-      border-bottom: 2px solid var(--gray-200);
-      color: var(--gray-600);
-      font-weight: 600;
-      text-transform: uppercase;
-      font-size: 0.65rem;
-      letter-spacing: 0.3px;
-    }
-    .history-table td {
-      padding: 0.4rem 0.5rem;
-      border-bottom: 1px solid var(--gray-100);
-      white-space: nowrap;
-    }
-    .history-table tr:hover td {
-      background: var(--purple-50);
-    }
-    .badge {
-      display: inline-block;
-      background: var(--purple-100);
-      color: var(--purple-800);
-      padding: 0.1rem 0.6rem;
-      border-radius: 100px;
-      font-size: 0.7rem;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-    .no-history {
-      padding: 1.5rem 0;
-      text-align: center;
-      color: var(--gray-600);
-    }
-
+    .chart-box h3 { font-size:1rem; font-weight:600; margin-bottom:0.8rem; display:flex; align-items:center; gap:0.4rem; color:var(--gray-800); }
+    .chart-box h3 i { color:var(--purple-500); }
+    .chart-container { position:relative; width:100%; max-width:100%; overflow:hidden; }
+    .chart-container canvas { max-width:100% !important; height:auto !important; }
+    .history-table-wrap { overflow-x:auto; margin-top:1rem; -webkit-overflow-scrolling:touch; }
+    .history-table { width:100%; border-collapse:collapse; font-size:0.85rem; min-width:400px; }
+    .history-table th { text-align:left; padding:0.5rem 0.5rem; border-bottom:2px solid var(--gray-200); color:var(--gray-600); font-weight:600; text-transform:uppercase; font-size:0.65rem; letter-spacing:0.3px; }
+    .history-table td { padding:0.4rem 0.5rem; border-bottom:1px solid var(--gray-100); white-space:nowrap; }
+    .history-table tr:hover td { background:var(--purple-50); }
+    .badge { display:inline-block; background:var(--purple-100); color:var(--purple-800); padding:0.1rem 0.6rem; border-radius:100px; font-size:0.7rem; font-weight:500; white-space:nowrap; }
+    .no-history { padding:1.5rem 0; text-align:center; color:var(--gray-600); }
     .hidden { display:none !important; }
     .mt-2 { margin-top:1.5rem; }
     .text-center { text-align:center; }
     .text-muted { color:var(--gray-600); }
-    .gradient-text {
-      background: linear-gradient(135deg, var(--purple-800), var(--purple-500));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .spinner {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      border: 3px solid rgba(168,85,247,0.2);
-      border-radius: 50%;
-      border-top-color: var(--purple-600);
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin {
-      to { transform:rotate(360deg); }
-    }
+    .gradient-text { background:linear-gradient(135deg,var(--purple-800),var(--purple-500)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .spinner { display:inline-block; width:24px; height:24px; border:3px solid rgba(168,85,247,0.2); border-radius:50%; border-top-color:var(--purple-600); animation:spin 0.8s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
 
-    @media (max-width:1024px) {
-      .stats-grid { grid-template-columns:repeat(2,1fr); }
-    }
+    @media (max-width:1024px) { .stats-grid { grid-template-columns:repeat(2,1fr); } }
     @media (max-width:768px) {
       body { padding:0.8rem; }
       .glass { padding:1rem; border-radius:var(--radius-md); }
@@ -380,6 +322,7 @@
       .history-table { font-size:0.7rem; min-width:280px; }
       .history-table th, .history-table td { padding:0.25rem 0.35rem; }
       .badge { font-size:0.55rem; padding:0.05rem 0.4rem; }
+      .links-table th, .links-table td { padding:0.5rem 0.6rem; font-size:0.75rem; }
     }
     @media (max-width:420px) {
       body { padding:0.5rem; }
@@ -425,6 +368,7 @@
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
         <a href="/contact">Contact</a>
+        <!-- Avatar will be inserted here by JS -->
       </div>
     </nav>
 
@@ -438,92 +382,98 @@
       <div class="glass-inner">
         <h1 style="font-size:1.8rem; font-weight:700; margin-bottom:0.5rem;">
           <i class="fas fa-chart-line" style="color:var(--purple-500);"></i>
-          <span class="gradient-text">Link Analytics</span>
+          <span class="gradient-text">Analytics Dashboard</span>
         </h1>
-        <p style="color:var(--gray-600); margin-bottom:1.5rem;">View detailed click statistics for your short links.</p>
+        <p style="color:var(--gray-600); margin-bottom:1.5rem;">View all your links and their detailed statistics.</p>
 
-        <!-- Loading -->
-        <div id="loading" class="text-center" style="padding:2rem 0; display:none;">
-          <div class="spinner" style="margin:0 auto;"></div>
-          <p style="margin-top:0.8rem; color:var(--gray-600);">Loading analytics...</p>
-        </div>
-
-        <!-- Error -->
-        <div id="error" class="text-center" style="padding:2rem 0; display:none; color:#b91c1c;">
-          <i class="fas fa-exclamation-circle fa-2x"></i>
-          <p style="margin-top:0.5rem;" id="errorMsg">Something went wrong.</p>
-        </div>
-
-        <!-- Dashboard -->
-        <div id="dashboard" class="hidden">
-          <div class="stats-grid" id="statsGrid"></div>
-
-          <div class="charts-grid">
-            <div class="chart-box">
-              <h3><i class="fas fa-calendar-day"></i> Last 7 Days</h3>
-              <div class="chart-container" style="height:220px;">
-                <canvas id="dailyChart"></canvas>
-              </div>
-            </div>
-            <div class="chart-box">
-              <h3><i class="fas fa-globe"></i> Device Breakdown</h3>
-              <div class="chart-container" style="height:220px;">
-                <canvas id="deviceChart"></canvas>
-              </div>
-            </div>
-          </div>
-
-          <div class="charts-grid-2">
-            <div class="chart-box">
-              <h3><i class="fas fa-browser"></i> Browsers</h3>
-              <div class="chart-container" style="height:180px;">
-                <canvas id="browserChart"></canvas>
-              </div>
-            </div>
-            <div class="chart-box">
-              <h3><i class="fas fa-map-marker-alt"></i> Countries</h3>
-              <div class="chart-container" style="height:180px;">
-                <canvas id="countryChart"></canvas>
-              </div>
-            </div>
-          </div>
-
-          <!-- Recent History -->
-          <div class="chart-box" style="margin-top:1.5rem;">
-            <h3><i class="fas fa-history"></i> Recent Clicks</h3>
-            <div class="history-table-wrap">
-              <table class="history-table">
-                <thead>
-                  <tr>
-                    <th>Time</th>
-                    <th>Device</th>
-                    <th>Browser</th>
-                    <th>Country</th>
-                  </tr>
-                </thead>
-                <tbody id="historyBody"></tbody>
-              </table>
-            </div>
-            <div id="noHistory" class="no-history">No clicks yet. Share your link!</div>
+        <!-- MY LINKS SECTION (always shown when logged in) -->
+        <div id="myLinksSection" class="my-links-section">
+          <h3><i class="fas fa-link" style="color:var(--purple-500);"></i> My Links</h3>
+          <div class="links-table-wrap">
+            <table class="links-table">
+              <thead>
+                <tr>
+                  <th>Short URL</th>
+                  <th>Original URL</th>
+                  <th>Clicks</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="myLinksBody">
+                <tr><td colspan="4" class="no-links-msg">Loading your links...</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <!-- Unauthorized / Not logged in -->
+        <!-- Detailed Analytics for a specific link -->
+        <div id="detailSection" style="margin-top:2rem; display:none;">
+          <hr style="margin-bottom:1.5rem;" />
+          <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:0.5rem;">
+            <i class="fas fa-chart-pie" style="color:var(--purple-500);"></i> Stats for: <span id="detailSlugDisplay" style="font-family:monospace; color:var(--purple-700);"></span>
+          </h2>
+          <div id="loadingDetail" class="text-center" style="padding:2rem 0; display:none;">
+            <div class="spinner" style="margin:0 auto;"></div>
+            <p style="margin-top:0.8rem; color:var(--gray-600);">Loading analytics...</p>
+          </div>
+          <div id="detailError" class="text-center" style="padding:2rem 0; display:none; color:#b91c1c;">
+            <i class="fas fa-exclamation-circle fa-2x"></i>
+            <p style="margin-top:0.5rem;" id="detailErrorMsg">Something went wrong.</p>
+          </div>
+          <div id="detailDashboard" style="display:none;">
+            <div class="stats-grid" id="statsGrid"></div>
+            <div class="charts-grid">
+              <div class="chart-box">
+                <h3><i class="fas fa-calendar-day"></i> Last 7 Days</h3>
+                <div class="chart-container" style="height:220px;">
+                  <canvas id="dailyChart"></canvas>
+                </div>
+              </div>
+              <div class="chart-box">
+                <h3><i class="fas fa-globe"></i> Device Breakdown</h3>
+                <div class="chart-container" style="height:220px;">
+                  <canvas id="deviceChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="charts-grid-2">
+              <div class="chart-box">
+                <h3><i class="fas fa-browser"></i> Browsers</h3>
+                <div class="chart-container" style="height:180px;">
+                  <canvas id="browserChart"></canvas>
+                </div>
+              </div>
+              <div class="chart-box">
+                <h3><i class="fas fa-map-marker-alt"></i> Countries</h3>
+                <div class="chart-container" style="height:180px;">
+                  <canvas id="countryChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="chart-box" style="margin-top:1.5rem;">
+              <h3><i class="fas fa-history"></i> Recent Clicks</h3>
+              <div class="history-table-wrap">
+                <table class="history-table">
+                  <thead>
+                    <tr>
+                      <th>Time</th>
+                      <th>Device</th>
+                      <th>Browser</th>
+                      <th>Country</th>
+                    </tr>
+                  </thead>
+                  <tbody id="historyBody"></tbody>
+                </table>
+              </div>
+              <div id="noHistory" class="no-history">No clicks yet. Share your link!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Not logged in message -->
         <div id="authRequired" class="text-center" style="padding:2rem 0; display:none;">
           <i class="fas fa-lock fa-2x" style="color:var(--purple-500);"></i>
-          <p style="margin-top:0.8rem; color:var(--gray-600);">Please <a href="/login" style="color:var(--purple-700); font-weight:500;">log in</a> to view analytics for your links.</p>
-        </div>
-
-        <!-- Not owner -->
-        <div id="notOwner" class="text-center" style="padding:2rem 0; display:none; color:#b91c1c;">
-          <i class="fas fa-exclamation-triangle fa-2x"></i>
-          <p style="margin-top:0.5rem;">You don't have access to this link's analytics.</p>
-        </div>
-
-        <!-- No slug provided -->
-        <div id="noSlug" class="text-center" style="padding:2rem 0; display:none;">
-          <i class="fas fa-link fa-2x" style="color:var(--purple-300);"></i>
-          <p style="margin-top:0.8rem; color:var(--gray-600);">No link specified. Go to <a href="/" style="color:var(--purple-700);">home</a> and generate a short link first.</p>
+          <p style="margin-top:0.8rem; color:var(--gray-600);">Please <a href="/login" style="color:var(--purple-700); font-weight:500;">log in</a> to view your links and analytics.</p>
         </div>
 
       </div>
@@ -546,49 +496,179 @@
     (function() {
       'use strict';
 
-      const loading = document.getElementById('loading');
-      const dashboard = document.getElementById('dashboard');
-      const errorDiv = document.getElementById('error');
-      const errorMsg = document.getElementById('errorMsg');
-      const authRequired = document.getElementById('authRequired');
-      const notOwner = document.getElementById('notOwner');
-      const noSlug = document.getElementById('noSlug');
+      // ===== USER STATE =====
+      let currentUser = null;
+      let chartInstances = {};
+
+      // ===== DOM REFS =====
+      const myLinksBody = document.getElementById('myLinksBody');
+      const detailSection = document.getElementById('detailSection');
+      const detailSlugDisplay = document.getElementById('detailSlugDisplay');
+      const loadingDetail = document.getElementById('loadingDetail');
+      const detailError = document.getElementById('detailError');
+      const detailErrorMsg = document.getElementById('detailErrorMsg');
+      const detailDashboard = document.getElementById('detailDashboard');
       const statsGrid = document.getElementById('statsGrid');
       const historyBody = document.getElementById('historyBody');
       const noHistory = document.getElementById('noHistory');
+      const authRequired = document.getElementById('authRequired');
+      const navToggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
 
-      let chartInstances = {};
+      // ===== NAV TOGGLE =====
+      navToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+        this.innerHTML = navLinks.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+      });
 
-      // Get slug from URL
+      // ===== EXTRACT SLUG FROM URL =====
       function getSlugFromURL() {
         const params = new URLSearchParams(window.location.search);
         return params.get('slug');
       }
 
-      async function loadAnalytics() {
-        const slug = getSlugFromURL();
-        if (!slug) {
-          noSlug.style.display = 'block';
+      // ===== CHECK AUTH =====
+      async function checkAuth() {
+        try {
+          const res = await fetch('/api/auth/me', { credentials: 'include' });
+          if (res.ok) {
+            const data = await res.json();
+            currentUser = data.user;
+            renderAvatar();
+            loadMyLinks();
+            // If slug is in URL, load details
+            const slug = getSlugFromURL();
+            if (slug) {
+              loadLinkDetails(slug);
+            }
+          } else {
+            currentUser = null;
+            renderAvatar();
+            myLinksBody.innerHTML = '<tr><td colspan="4" class="no-links-msg">Please log in to see your links.</td></tr>';
+            authRequired.style.display = 'block';
+          }
+        } catch (_) {
+          currentUser = null;
+          renderAvatar();
+          authRequired.style.display = 'block';
+        }
+      }
+
+      // ===== RENDER AVATAR (same as index.html) =====
+      function renderAvatar() {
+        const existingAvatar = document.getElementById('avatarWrap');
+        if (existingAvatar) existingAvatar.remove();
+
+        if (!currentUser) {
+          const loginLink = document.createElement('a');
+          loginLink.href = '/login';
+          loginLink.className = 'nav-link';
+          loginLink.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+          navLinks.appendChild(loginLink);
           return;
         }
 
-        loading.style.display = 'block';
-        dashboard.classList.add('hidden');
-        errorDiv.style.display = 'none';
-        authRequired.style.display = 'none';
-        notOwner.style.display = 'none';
-        noSlug.style.display = 'none';
+        const wrap = document.createElement('div');
+        wrap.id = 'avatarWrap';
+        wrap.className = 'avatar-wrap';
+
+        const avatar = document.createElement('div');
+        avatar.className = 'avatar';
+        avatar.textContent = currentUser.name.charAt(0).toUpperCase();
+
+        const dropdown = document.createElement('div');
+        dropdown.className = 'dropdown';
+        dropdown.id = 'avatarDropdown';
+        dropdown.innerHTML = `
+          <div class="dropdown-item" style="display:flex; align-items:center; gap:0.8rem; padding:0.8rem 1.2rem; background:var(--purple-50); border-radius:var(--radius-sm) 0 0 0;">
+            <div class="avatar" style="width:40px; height:40px; font-size:1.2rem;">${currentUser.name.charAt(0).toUpperCase()}</div>
+            <div style="text-align:left;">
+              <div style="font-weight:600; color:var(--gray-800);">${currentUser.name}</div>
+              <div style="font-size:0.75rem; color:var(--gray-600);">${currentUser.email}</div>
+            </div>
+          </div>
+          <hr style="margin:0.3rem 0.5rem; border-color:var(--gray-200);">
+          <button class="dropdown-item" id="logoutBtn" style="display:flex; align-items:center; gap:0.6rem; width:100%; padding:0.6rem 1.2rem; border:none; background:none; cursor:pointer; font-family:'Inter',sans-serif; font-size:0.85rem; color:var(--gray-700); border-radius:0 0 var(--radius-sm) var(--radius-sm);">
+            <i class="fas fa-sign-out-alt" style="color:var(--purple-500);"></i> Logout
+          </button>
+        `;
+
+        wrap.appendChild(avatar);
+        wrap.appendChild(dropdown);
+        navLinks.appendChild(wrap);
+
+        avatar.addEventListener('click', (e) => {
+          e.stopPropagation();
+          dropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', () => dropdown.classList.remove('open'));
+
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+          try {
+            await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+            window.location.reload();
+          } catch (_) {
+            alert('Logout failed. Please try again.');
+          }
+        });
+      }
+
+      // ===== LOAD MY LINKS =====
+      async function loadMyLinks() {
+        if (!currentUser) {
+          myLinksBody.innerHTML = '<tr><td colspan="4" class="no-links-msg">Please log in to see your links.</td></tr>';
+          return;
+        }
+        try {
+          const res = await fetch('/api/user/links', { credentials: 'include' });
+          if (!res.ok) {
+            if (res.status === 401) {
+              currentUser = null;
+              renderAvatar();
+              authRequired.style.display = 'block';
+              return;
+            }
+            throw new Error('Failed to load links');
+          }
+          const data = await res.json();
+          const links = data.links || [];
+          if (links.length === 0) {
+            myLinksBody.innerHTML = '<tr><td colspan="4" class="no-links-msg">You haven\'t created any short links yet.</td></tr>';
+            return;
+          }
+          myLinksBody.innerHTML = links.map(link => `
+            <tr>
+              <td><a href="/${link.slug}" target="_blank" class="link-cell">${window.location.origin}/${link.slug}</a></td>
+              <td style="max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${link.original}</td>
+              <td><span class="clicks-badge">${link.clicks || 0}</span></td>
+              <td>
+                <button class="btn-analytics" style="background:transparent; border:1px solid var(--purple-400); padding:0.2rem 0.6rem; border-radius:100px; font-size:0.7rem; color:var(--purple-700); cursor:pointer; font-family:'Inter',sans-serif;" onclick="loadLinkDetails('${link.slug}')">
+                  <i class="fas fa-chart-line"></i> View Analytics
+                </button>
+              </td>
+            </tr>
+          `).join('');
+        } catch (err) {
+          console.error(err);
+          myLinksBody.innerHTML = '<tr><td colspan="4" class="no-links-msg">Error loading links. Please refresh.</td></tr>';
+        }
+      }
+
+      // ===== LOAD LINK DETAILS (analytics for a single slug) =====
+      window.loadLinkDetails = async function(slug) {
+        if (!slug) return;
+        detailSection.style.display = 'block';
+        detailSlugDisplay.textContent = `/${slug}`;
+        loadingDetail.style.display = 'block';
+        detailDashboard.style.display = 'none';
+        detailError.style.display = 'none';
 
         try {
           const response = await fetch(`/api/analytics/${slug}`, { credentials: 'include' });
-          if (response.status === 401) {
-            loading.style.display = 'none';
-            authRequired.style.display = 'block';
-            return;
-          }
-          if (response.status === 403) {
-            loading.style.display = 'none';
-            notOwner.style.display = 'block';
+          if (response.status === 401 || response.status === 403) {
+            loadingDetail.style.display = 'none';
+            detailError.style.display = 'block';
+            detailErrorMsg.textContent = response.status === 401 ? 'Please log in to view this link.' : 'You do not own this link.';
             return;
           }
           if (!response.ok) {
@@ -599,18 +679,21 @@
           renderStats(data);
           renderCharts(data);
           renderHistory(data.history || []);
-          dashboard.classList.remove('hidden');
-          loading.style.display = 'none';
-
+          detailDashboard.style.display = 'block';
+          loadingDetail.style.display = 'none';
+          // Update URL without reload
+          const url = new URL(window.location);
+          url.searchParams.set('slug', slug);
+          window.history.pushState({}, '', url);
         } catch (err) {
           console.error(err);
-          errorMsg.textContent = err.message || 'Failed to load analytics.';
-          errorDiv.style.display = 'block';
-          loading.style.display = 'none';
-          dashboard.classList.add('hidden');
+          detailError.style.display = 'block';
+          detailErrorMsg.textContent = err.message || 'Failed to load analytics.';
+          loadingDetail.style.display = 'none';
         }
-      }
+      };
 
+      // ===== RENDER STATS =====
       function renderStats(data) {
         const lastClick = data.lastClick ? new Date(data.lastClick).toLocaleString() : 'Never';
         statsGrid.innerHTML = `
@@ -633,12 +716,12 @@
         `;
       }
 
+      // ===== RENDER CHARTS =====
       function renderCharts(data) {
         Object.values(chartInstances).forEach(chart => chart.destroy());
         chartInstances = {};
         const isMobile = window.innerWidth < 768;
 
-        // 7-day chart
         const labels = data.chartData.map(d => d.date);
         const values = data.chartData.map(d => d.clicks);
         const ctxDaily = document.getElementById('dailyChart').getContext('2d');
@@ -671,7 +754,6 @@
           }
         });
 
-        // Device pie
         const devices = data.devices || {};
         const deviceLabels = Object.keys(devices);
         const deviceValues = Object.values(devices);
@@ -700,7 +782,6 @@
           }
         });
 
-        // Browsers bar
         const browsers = data.browsers || {};
         const browserLabels = Object.keys(browsers);
         const browserValues = Object.values(browsers);
@@ -728,7 +809,6 @@
           }
         });
 
-        // Countries bar
         const countries = data.countries || {};
         const countryLabels = Object.keys(countries);
         const countryValues = Object.values(countries);
@@ -757,6 +837,7 @@
         });
       }
 
+      // ===== RENDER HISTORY =====
       function renderHistory(history) {
         const tbody = historyBody;
         tbody.innerHTML = '';
@@ -778,17 +859,10 @@
         });
       }
 
-      // Nav toggle
-      document.getElementById('navToggle').addEventListener('click', function() {
-        const links = document.getElementById('navLinks');
-        links.classList.toggle('open');
-        this.innerHTML = links.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-      });
+      // ===== INIT =====
+      checkAuth();
 
-      // Load on page load
-      loadAnalytics();
-
-      // Reload charts on resize (debounced)
+      // Handle resize for charts (debounced)
       let resizeTimer;
       window.addEventListener('resize', function() {
         clearTimeout(resizeTimer);
